@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": false
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -24,6 +27,10 @@
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": [
+              { "glob": "**/*", 
+                "input": "node_modules/@mitel/cloudlink-console-components/assets",
+                "output": "/assets/cl-console-components/" 
+              },
               "src/favicon.ico",
               "src/assets"
             ],
