@@ -4,9 +4,10 @@ import { Account, Claims, UserClaims } from '@mitel/cloudlink-sdk';
 import { Router } from '@angular/router';
 
 import { environment } from '@env/environment';
-import { AuthService } from './services/authentication.service';
-import { Logger } from '@app/services/logger.service';
+import { AuthService } from '@core/services/authentication.service';
+import { Logger } from '@core/services/logger.service';
 import { BehaviorSubject } from 'rxjs';
+import { navItems, supportedLanguages } from '@app/constants/appInfo';
 
 const log = new Logger('AppComponent');
 
@@ -22,7 +23,9 @@ export class AppComponent implements OnInit {
   claims: Claims;
   company: Account;
   claimsReceivedAndProcessed: BehaviorSubject<boolean> = new BehaviorSubject(false);
-
+  navItems: any[];
+  menuClickCounter: number = 0;
+  languages: any[];
   constructor(
     private authSvc: AuthService,
     private clHeader: ClHeaderComponent,
@@ -32,6 +35,8 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     ({ appName: this.appName, cloud: this.cloudEnv } = environment);
     this.clHeader.setClientId(environment.clientId);
+    this.languages = supportedLanguages;
+    this.navItems = navItems;
   }
 
 
@@ -90,10 +95,26 @@ export class AppComponent implements OnInit {
     this.router.navigateByUrl('/');
   }
 
+  onMenuItemClicked(url: string): void {
+    if (this.menuClickCounter++ < 1 && url === '/') {
+      // The itemsClicked event fires when <cl-side-nav> initializes and again if AltRole changes.
+      // Note: we always set altRole, so 2 initializing events.
+      // Skip 1st event because we expect a 2nd when we set AltRole, causing the <cl-side-nav>
+      // to fire it's itemsClicked event one more time.
+      // Note: having a 2nd initilaizing itemsClicked event breaks the page refresh section below
+      return;
+    }
+    if (url) {
+      sessionStorage.setItem('current-url', url);
+      this.router.navigateByUrl(url);
+    }
+  }
+
   onCompanyUpdated(company: Account): void {
     this.company = company;
     this.claimsReceivedAndProcessed.next(true);
     this.authSvc.setCompany(company);
+    // this.goHomePage();
 
   }
 }

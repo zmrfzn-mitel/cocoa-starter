@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+    <defs>
+        <path id="b" d="M0 0h448v1165H0z"/>
+        <filter id="a" width="100.4%" height="100.1%" x="-.3%" y="0%" filterUnits="objectBoundingBox">
+            <feOffset dx="-1" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feColorMatrix in="shadowOffsetOuter1" values="0 0 0 0 0.701960784 0 0 0 0 0.701960784 0 0 0 0 0.701960784 0 0 0 1 0"/>
+        </filter>
+        <path id="c" d="M11.5 1.063c.841 0 1.522.682 1.522 1.522a.522.522 0 0 1-1.043 0 .478.478 0 0 0-.478-.478h-9a.478.478 0 0 0-.479.478v9c0 .264.215.478.479.478h9a.478.478 0 0 0 .478-.478v-3a.522.522 0 0 1 1.043 0v3c0 .84-.68 1.522-1.521 1.522h-9c-.84 0-1.522-.682-1.522-1.522v-9c0-.84.681-1.522 1.522-1.522h9zm3.37 2.153l2 2 .016.017.029.035-.045-.052a.524.524 0 0 1 .152.369v.023a.525.525 0 0 1-.004.043l.004-.066a.523.523 0 0 1-.152.369l-2 2a.522.522 0 1 1-.738-.738l1.108-1.11H9a1.978 1.978 0 0 0-1.978 1.979.522.522 0 1 1-1.044 0A3.022 3.022 0 0 1 9 5.063h6.24l-1.108-1.11a.522.522 0 0 1 .738-.737z"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <path fill="#F5F5F6" d="M-1364-753H76V484h-1440z"/>
+        <g transform="translate(-372 -681)">
+            <use fill="#000" filter="url(#a)" xlink:href="#b"/>
+            <use fill="#FFF" xlink:href="#b"/>
+        </g>
+        <text fill="#79797A" font-family="OpenSans-Regular, Open Sans" font-size="12" transform="translate(-1364 -753)">
+            <tspan x="1015" y="765">All bug &amp; issue reports are sent to these contacts.</tspan>
+        </text>
+        <g transform="translate(-1 1)">
+            <mask id="d" fill="#fff">
+                <use xlink:href="#c"/>
+            </mask>
+            <use fill="#3A393A" fill-rule="nonzero" xlink:href="#c"/>
+            <g fill="#0073D0" mask="url(#d)">
+                <path d="M.652-1.348h16.696v16.696H.652z"/>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CLUser } from '@app/models/cl-user';
-import { Logger } from '@app/services/logger.service';
+import { CLUser } from '@core/models/cl-user';
+import { Logger } from '@core/services/logger.service';
 import { environment } from '@env/environment';
 import { CompanySwitcherService } from '@mitel/cloudlink-console-components';
 import { Account, AuthenticationService, Claims, Config, Token, UserClaims } from '@mitel/cloudlink-sdk';
