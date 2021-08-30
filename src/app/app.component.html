@@ -1,25 +1,28 @@
 <div id="container" class="app-main">
 
-  <cl-header 
-  [appLabelName]="appName" 
-  [cloud]="cloudEnv" 
-  (userClaimsUpdated)="handleUserClaims($event)"
-  (goHomePage)="goHomePage()"
-  (companyUpdated)="onCompanyUpdated($event)"
-  (authConfirmedInvokingUrl)="handleAuthentication($event)">
-</cl-header>
-
-<div id="content">
-    <cl-side-nav 
-    [claims]="claims" 
-    (goHomePage)="goHomePage()"
-    [menuItems]='navItems' 
-    defaultItemId="home" 
-    [supportedLanguages]='languages'
-    (itemClicked)="onMenuItemClicked($event)"    
-    >
-    </cl-side-nav>
+  <header>
+      <cl-header
+      [appLabelName]="appName"
+      [cloud]="cloudEnv"
+      (userClaimsUpdated)="handleUserClaims($event)"
+      (goHomePage)="goHomePage()"
+      (companyUpdated)="onCompanyUpdated($event)"
+      (authConfirmedInvokingUrl)="handleAuthentication($event)">
+      </cl-header>
+  </header>
+  <section>
+  <div id="content">
+      <cl-side-nav
+      [claims]="claims"
+      (goHomePage)="goHomePage()"
+      [menuItems]='navItems'
+      defaultItemId="home"
+      [supportedLanguages]='languages'
+      (itemClicked)="onMenuItemClicked($event)"
+      >
+      </cl-side-nav>
     <router-outlet></router-outlet>
   </div>
+</section>
 
 </div>

@@ -12,7 +12,7 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "types": ["node"],
+    "types": ["node", "jasmine"],
     "typeRoots": [
       "node_modules/@types"
     ],
