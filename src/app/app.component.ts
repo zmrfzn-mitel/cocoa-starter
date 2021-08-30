@@ -75,6 +75,7 @@ export class AppComponent implements OnInit {
       this.claimsReceivedAndProcessed.subscribe(processed => {
         if (processed === true) {
           this.authSvc.setSession(this.company.accountId, true);
+          this.goHomePage();
         }
       });
     }
@@ -86,6 +87,7 @@ export class AppComponent implements OnInit {
         if (processed === true) {
           const acountId = sessionStorage.getItem('accountId') || this.company.accountId;
           this.authSvc.setSession(acountId, false);
+          this.goHomePage();
         }
       });
     }
@@ -93,6 +95,7 @@ export class AppComponent implements OnInit {
   }
 
   goHomePage(): void {
+    log.info('Navigating to home');
     this.router.navigateByUrl('/');
   }
 
@@ -115,8 +118,6 @@ export class AppComponent implements OnInit {
     this.company = company;
     this.claimsReceivedAndProcessed.next(true);
     this.authSvc.setCompany(company);
-    // this.goHomePage();
-
   }
 
 }

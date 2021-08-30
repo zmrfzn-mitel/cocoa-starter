@@ -1,0 +1,54 @@
+$title-color: #15325F;
+$content-color: #656769;
+$body-border-color: #BFBFC0;
+$body-border-radius: 5px;
+
+@media only screen and (min-width: 769px) {
+    #content {        
+        margin-left: 250px;
+        min-width: 950px;
+        width: calc(100% - 250px);
+    }
+}
+
+@media only screen and (max-width: 769px) {
+    #content {
+        width: calc(100% - 250px);
+        min-width: 950px;
+        overflow-x: auto;
+    }
+}
+
+.nav-error-container{
+    padding: 20px;
+    padding-top: 85px;
+    margin-right: 0px;
+    margin-left: 0px;
+    .nav-error-title{
+        margin-bottom: 10px;        
+        font-size: 24px;
+        color: $title-color;
+
+    }    
+    .nav-error-body{
+        padding: 20px;
+        border: 1px solid $body-border-color;
+        border-radius: $body-border-radius;
+
+        .nav-error-header{
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .nav-error-content{
+            margin: 15px 0px;
+            color: $content-color;         
+        }
+
+        .nav-error-footer{
+            color: $content-color;
+            margin-bottom: 30px;    
+
+        }
+    }
+}
