@@ -18,6 +18,7 @@ const log = new Logger('AppComponent');
 })
 export class AppComponent implements OnInit {
   title = 'cocoa-starter';
+  displayLoadingSpinner = false;
   appName: string;
   cloudEnv: string;
   claims: Claims;
@@ -117,4 +118,5 @@ export class AppComponent implements OnInit {
     // this.goHomePage();
 
   }
+
 }
