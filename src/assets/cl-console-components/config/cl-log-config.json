@@ -1,0 +1,29 @@
+{
+    "loggers": [
+    {
+      "name": "console",
+      "enabled": "true"
+    },
+    {
+      "name": "cloudlink-logger",
+      "enabled": "false"
+    }
+  ],
+
+  "logOutputs": [
+      {
+        "type": "software",
+        "loggerList": ["console", "cloudlink-logger"]
+      },
+      {
+        "type": "audit",
+        "loggerList": ["console", "cloudlink-logger"]
+      },
+      {
+        "type": "exception",
+        "loggerList": ["console", "cloudlink-logger"]
+      }
+  ],
+
+  "logLevel": "Warn"
+}

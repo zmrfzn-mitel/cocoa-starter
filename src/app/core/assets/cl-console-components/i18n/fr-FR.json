@@ -1,0 +1,21 @@
+{
+    "cl_header":{
+        "logout": "Connectez - Out"
+    },
+	"cl_applauncher":{
+        "seemoreapplications": "Voir plus d'applications"
+    },
+    "cl_alert":{
+        "dismiss_all": "Rejeter la totalité",
+        "notfication_title": "Les notifications",
+        "no_notifications": "Aucune notification"
+    },
+    "cl_side_nav": {
+        "support": "Soutien",
+        "legal": "Légal"
+    },
+    "cl_company_switcher": {
+        "search_company": "Sociétés de Recherche",
+        "loading": "chargement"
+    }
+}

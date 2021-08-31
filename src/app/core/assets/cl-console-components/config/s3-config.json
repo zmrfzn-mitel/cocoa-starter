@@ -1,0 +1,9 @@
+{
+  "batchSize" : 1000,
+  "urls" :
+  {
+    "logs": "https://logs.dev.api.mitel.io/2017-09-01/logs",
+    "files": "https://logs.dev.api.mitel.io/2017-09-01/files",
+    "exceptions": "https://logs.dev.api.mitel.io/2017-09-01/exceptions"
+  }
+}

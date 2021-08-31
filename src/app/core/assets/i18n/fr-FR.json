@@ -1,8 +1,8 @@
 {
     "menu_items": {
-        "Dashboard": "[GB]Dashboard",
-        "home": "[GB]Home",
-        "test": "[GB]Test"
+        "Dashboard": "[FR]Dashboard",
+        "home": "[FR]Home",
+        "test": "[FR]Test"
     },
     "nav_error": {
         "400": {

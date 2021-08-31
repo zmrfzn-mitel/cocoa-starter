@@ -2,8 +2,7 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 
 import { Observable, from, Subject } from 'rxjs';
 import { TranslateLoader, TranslateService } from '@ngx-translate/core';
-import { AppInfoService } from './app-info.service';
-
+import { AppInfoService } from '../../services/app-info.service';
 import * as _ from 'lodash';
 
 export class CustomTranslateLoader implements TranslateLoader {
@@ -18,17 +17,17 @@ export class CustomTranslateLoader implements TranslateLoader {
     if (langWithModulePath[0]) {
       lang = langWithModulePath[0];
     } else {
-      lang = localStorage.getItem('userLangPreference') ? localStorage.getItem('userLangPreference') : navigator.language;
+      lang = localStorage.getItem('userLangPreference') ? localStorage.getItem('userLangPreference') : navigator.language;
     }
 
-    switch(lang) {
+    switch (lang) {
       case 'en':
       case 'en-US':
         lang = 'en-US';
         break;
       case 'en-GB':
         lang = 'en-GB';
-          break;
+        break;
       case 'de':
       case 'de-DE':
         lang = 'de-DE';
@@ -42,16 +41,16 @@ export class CustomTranslateLoader implements TranslateLoader {
     }
 
     let files = [
-      import(`../../assets/cl-console-components/i18n/${lang}.json`),
-      import(`../../assets/i18n/${lang}.json`)
+      import(`../assets/cl-console-components/i18n/${lang}.json`),
+      import(`../assets/i18n/${lang}.json`)
     ];
 
     if (modulePath) {
       files.push(import(`../${modulePath}/assets/i18n/${lang}.json`));
     }
 
-    return from(Promise.all( files ).then( values => {
-      return  _.merge(...values);
+    return from(Promise.all(files).then(values => {
+      return _.merge(...values);
     }));
   }
 }
@@ -78,8 +77,8 @@ export class userLangPreference {
   constructor(
     private appInfoService: AppInfoService,
     private translateSvc: TranslateService
-    ) {
-    
+  ) {
+
   }
   setUserLanguage(lang: string) {
     let langWithModulePath = lang.split("/");
@@ -89,14 +88,14 @@ export class userLangPreference {
     lang = this.formatLocale(lang);
     localStorage.setItem('userLangPreference', lang);
   }
-  
+
   getUserLanguage() {
     return localStorage.getItem('userLangPreference');
   }
 
   getLocale() {
     const langRegex = new RegExp(
-      this.appInfoService.getLangCodes().join('|') + '|' + 
+      this.appInfoService.getLangCodes().join('|') + '|' +
       this.appInfoService.getLangCodes().toString().split('-').toString().split(',').join('|'),
       'gi'
     );
@@ -110,8 +109,8 @@ export class userLangPreference {
     }
   }
 
-  formatLocale(lang:string) {
-    switch(lang) {
+  formatLocale(lang: string) {
+    switch (lang) {
       case 'en':
       case 'en-US':
         return lang = 'en-US';
@@ -130,7 +129,7 @@ export class userLangPreference {
 
   getLanguagePrefix() {
     let selectedLang = this.getLocale();
-    if(selectedLang){
+    if (selectedLang) {
       selectedLang = selectedLang.split('-')[0]
     }
     return selectedLang;

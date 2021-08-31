@@ -2,7 +2,7 @@ export const navItems: any[] = [
     {
         name: 'Home',
         id: 'home',
-        translationKey: 'home',
+        translationKey: 'home', 
         minRole: 'USER',
         navigation: '/',
         iconActive: '/assets/icons/dashboard_active.svg',

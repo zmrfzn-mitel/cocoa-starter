@@ -6,8 +6,9 @@ import { Router } from '@angular/router';
 import { environment } from '@env/environment';
 import { AuthService } from '@core/services/authentication.service';
 import { Logger } from '@core/services/logger.service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { navItems, supportedLanguages } from '@app/constants/appInfo';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
 const log = new Logger('AppComponent');
 
@@ -27,10 +28,14 @@ export class AppComponent implements OnInit {
   navItems: any[];
   menuClickCounter: number = 0;
   languages: any[];
+  menuItems: any[] = [];
+  subscriptions: Subscription[] = [];
+
   constructor(
     private authSvc: AuthService,
     private clHeader: ClHeaderComponent,
     private router: Router,
+    private translateSvc: TranslateService
   ) { }
 
   ngOnInit(): void {
@@ -38,6 +43,12 @@ export class AppComponent implements OnInit {
     this.clHeader.setClientId(environment.clientId);
     this.languages = supportedLanguages;
     this.navItems = navItems;
+    this.menuItems = this.navItems;
+    this.subscriptions.push(
+      this.translateSvc.onLangChange.subscribe((event: LangChangeEvent) => {
+        this.setTranslatedMenuValues();
+      })
+    );
   }
 
 
@@ -94,6 +105,24 @@ export class AppComponent implements OnInit {
 
   }
 
+
+
+  setTranslatedMenuValues() {
+    let menuItem, child;
+    for (menuItem of this.menuItems) {
+      const key = 'menu_items.' + menuItem.translationKey;
+      menuItem.name = this.translateSvc.instant(key);
+      menuItem.iconActive = `/assets/icons/${menuItem.id}-active.png`;
+      menuItem.iconInactive = `/assets/icons/${menuItem.id}-inactive.png`;
+      if (menuItem.children !== undefined && menuItem.children.length > 0) {
+        for (child of menuItem.children) {
+          const childkey = 'menu_items.' + child.translationKey;
+          child.name = this.translateSvc.instant(childkey);
+        }
+      }
+    }
+  }
+
   goHomePage(): void {
     log.info('Navigating to home');
     this.router.navigateByUrl('/');
@@ -118,6 +147,10 @@ export class AppComponent implements OnInit {
     this.company = company;
     this.claimsReceivedAndProcessed.next(true);
     this.authSvc.setCompany(company);
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(s => s.unsubscribe());
   }
 
 }

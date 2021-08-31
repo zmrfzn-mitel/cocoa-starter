@@ -5,13 +5,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateModule, TranslateLoader, TranslateService, LangChangeEvent } from '@ngx-translate/core';
-import { CustomTranslateLoader } from './services/translate-loader.service';
-import { AppRoutingModule } from '@app/app-routing.module';
+import { AppRoutingModule } from '@app/app-routing.module'; 
 import { AppComponent } from '@app/app.component';
 import { CoreModule } from '@core/core.module';
 import { TestComponentComponent } from '@app/test-component/test-component.component';
-
 declare var System: any;
 
 
@@ -27,13 +24,7 @@ declare var System: any;
     HttpClientModule,
     NgbModule,
     FormsModule,
-    CoreModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useClass: CustomTranslateLoader
-      }
-    }),
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

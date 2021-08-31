@@ -1,0 +1,40 @@
+{
+  "menu_items": {
+    "Dashboard": "[DE] Dashboard",
+    "home": "[DE] Home",
+    "test": "[DE] Test"
+  },
+  "nav_error": {
+    "400": {
+      "content": "[DE] The request is invalid.",
+      "footer": "If you believe you have reached this message in error, please ",
+      "header": "400 - Bad request",
+      "title": "Nothing to see here..."
+    },
+    "404": {
+      "content": "The page you requested does not exist. You may have typed the address incorrectly, or th elink or applicaiton that brought you here may be out of date.",
+      "footer": "If you believe you have reached this message in error, please ",
+      "header": "404 - Not Found",
+      "title": "Nothing to see here..."
+    },
+    "403": {
+      "content": "Sorry, it doesn't seem that you have permission to access this feature. Use your browser's back button to return to the previous page; from there, you can try again or take a different action.",
+      "footer": "If you think this is a mistake, please ",
+      "header": "403 - Forbidden",
+      "title": "We weren't expecting you here..."
+    },
+    "500": {
+      "content": "[DE] We're sorry; the system returned an error processing your request. You can use the back button to try again.",
+      "footer": "If the problem persists, or you need immediate assistance, please ",
+      "header": "500 - Application Error",
+      "title": "Well, this is embarrassing..."
+    },
+    "503": {
+      "content": "We're sorry; the system is temporarily unavailable. You can use the back button to try again in a few moments.",
+      "footer": "If the problem persists or you need immediate assistance, please ",
+      "header": "503 - Service Unavailable",
+      "title": "Sorry, we're not here right now..."
+    },
+    "contact_us": "contact us."
+  }
+}

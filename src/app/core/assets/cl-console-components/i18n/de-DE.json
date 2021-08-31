@@ -1,0 +1,22 @@
+{
+  "cl_header": {
+    "logout": "Abmeldung"
+  },
+  "cl_applauncher": {
+    "seemoreapplications": "Weitere Anwendungen anzeigen",
+    "spinner": "Wird geladen..."
+  },
+  "cl_alert": {
+    "dismiss_all": "Alle ablehnen",
+    "notfication_title": "Benachrichtigungen",
+    "no_notifications": "Keine Benachrichtigungen"
+  },
+  "cl_side_nav": {
+    "support": "Support",
+    "legal": "Rechtliches"
+  },
+  "cl_company_switcher": {
+    "search_company": "Firmen suchen",
+    "loading": "Laden"
+  }
+}

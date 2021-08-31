@@ -4,7 +4,8 @@ import { AuthService } from '@core/services/authentication.service';
 import { AuthenticationService } from '@mitel/cloudlink-sdk';
 import { ClConsoleComponentsModule, ClHeaderComponent, ClSideNavComponent } from '@mitel/cloudlink-console-components';
 import { NavigationErrorComponent } from '@core/components/navigation-error/navigation-error.component';
-
+import { TranslateModule, TranslateLoader, TranslateService, LangChangeEvent } from '@ngx-translate/core';
+import { CustomTranslateLoader } from './services/translate-loader.service';
 
 
 @NgModule({
@@ -13,7 +14,13 @@ import { NavigationErrorComponent } from '@core/components/navigation-error/navi
   ],
   imports: [
     CommonModule,
-    ClConsoleComponentsModule
+    ClConsoleComponentsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useClass: CustomTranslateLoader
+      }
+    })
   ],
   providers: [
     AuthService,

@@ -1,20 +1,20 @@
 <div class="wrapper">
     <div id='content'>
-      <div class="nav-error-container row">
+      <div class="nav-error-container row"> 
         <div class="col-md-4"></div>
         <div class="col-md-4">
           <div class="nav-error-title">
-            {{ 'nav_error.' + errorNum + '.title' }}
+            {{ 'nav_error.' + errorNum + '.title' | translate }}
           </div>
           <div class="nav-error-body">
             <div class="nav-error-header">
-              {{ 'nav_error.' + errorNum + '.header' }}
+              {{ 'nav_error.' + errorNum + '.header' | translate}}
             </div>
             <div class="nav-error-content">
-              {{ 'nav_error.' + errorNum + '.content' }}
+              {{ 'nav_error.' + errorNum + '.content' | translate}}
             </div>
             <div class="nav-error-footer">
-              {{ 'nav_error.' + errorNum + '.footer' }}<a href="https://oneview.mitel.com/s/support" target="_blank">{{'nav_error.contact_us'}}</a>
+              {{ 'nav_error.' + errorNum + '.footer' | translate}}<a href="https://oneview.mitel.com/s/support" target="_blank">{{'nav_error.contact_us' | translate}}</a>
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { AppModel, AppList, supportedLanguages } from './app-info';
+import { supportedLanguages } from '../constants/appInfo';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,6 @@ import { AppModel, AppList, supportedLanguages } from './app-info';
 export class AppInfoService {
 
   supportedLanguages = supportedLanguages;
-  appList = AppList;
 
   constructor(
     
