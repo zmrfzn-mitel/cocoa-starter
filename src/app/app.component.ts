@@ -9,6 +9,8 @@ import { Logger } from '@core/services/logger.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { navItems, supportedLanguages } from '@app/constants/appInfo';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+import { langService } from './core/services/translate-loader.service';
+import { AppInfoService } from './services/app-info.service';
 
 const log = new Logger('AppComponent');
 
@@ -28,14 +30,15 @@ export class AppComponent implements OnInit {
   navItems: any[];
   menuClickCounter: number = 0;
   languages: any[];
-  menuItems: any[] = [];
   subscriptions: Subscription[] = [];
-
+  selectedLangCode: string;
   constructor(
     private authSvc: AuthService,
     private clHeader: ClHeaderComponent,
     private router: Router,
-    private translateSvc: TranslateService
+    private translateSvc: TranslateService,
+    private langSvc: langService,
+    private appInfoService: AppInfoService,
   ) { }
 
   ngOnInit(): void {
@@ -43,10 +46,12 @@ export class AppComponent implements OnInit {
     this.clHeader.setClientId(environment.clientId);
     this.languages = supportedLanguages;
     this.navItems = navItems;
-    this.menuItems = this.navItems;
+    //this.setupTranslationService();
     this.subscriptions.push(
       this.translateSvc.onLangChange.subscribe((event: LangChangeEvent) => {
+        this.selectedLangCode = event.lang;
         this.setTranslatedMenuValues();
+        this.setUserLanguage(event.lang);
       })
     );
   }
@@ -102,20 +107,69 @@ export class AppComponent implements OnInit {
         }
       });
     }
-
   }
 
+  setupTranslationService() {
+    this.languages = this.getLanguages();
+    const langRegex = new RegExp(
+      this.appInfoService.getLangCodes().join('|') + '|' +
+      this.appInfoService.getLangCodes().toString().split('-').toString().split(',').join('|'),
+      'gi'
+    );
+    this.translateSvc.addLangs(this.appInfoService.getLangCodes());
+    const browserLang = this.translateSvc.getBrowserCultureLang();
+    let userLang: string = localStorage.getItem('userLangPreference');
+    if (!userLang && userLang.startsWith('en')) {
+      this.selectedLangCode = (browserLang.match(langRegex) ? browserLang : 'en-US');
+    } else if (!userLang.startsWith('en')) {
+      this.selectedLangCode = userLang.split('-')[0] + '/';
+      //this.userLang.setUserLanguage(languageCode);
+    } else {
+      this.selectedLangCode = userLang ? userLang : (browserLang.match(langRegex) ? browserLang : 'en-US');
+    }
+    this.translateSvc.use(this.selectedLangCode);
+  }
 
+  getLanguages(): any[] {
+    return (this.appInfoService.getSupportedLanguages());
+  }
+
+  setUserLanguage(lang: string) {
+    let langWithModulePath = lang.split("/");
+    if (langWithModulePath[0]) {
+      lang = langWithModulePath[0];
+    }
+    lang = this.formatLocale(lang);
+    localStorage.setItem('userLangPreference', lang);
+  }
+
+  formatLocale(lang: string) {
+    switch (lang) {
+      case 'en':
+      case 'en-US':
+        return lang = 'en-US';
+      case 'en-GB':
+        return lang = 'en-GB';
+      case 'de':
+      case 'de-DE':
+        return lang = 'de-DE';
+      case 'fr':
+      case 'fr-FR':
+        return lang = 'fr-FR';
+      default:
+        return lang = 'en-US';
+    }
+  }
 
   setTranslatedMenuValues() {
-    let menuItem, child;
-    for (menuItem of this.menuItems) {
-      const key = 'menu_items.' + menuItem.translationKey;
-      menuItem.name = this.translateSvc.instant(key);
-      menuItem.iconActive = `/assets/icons/${menuItem.id}-active.png`;
-      menuItem.iconInactive = `/assets/icons/${menuItem.id}-inactive.png`;
-      if (menuItem.children !== undefined && menuItem.children.length > 0) {
-        for (child of menuItem.children) {
+    let navItem, child;
+    for (navItem of this.navItems) {
+      const key = 'menu_items.' + navItem.translationKey;
+      navItem.name = this.translateSvc.instant(key);
+      // navItem.iconActive = `/assets/icons/${navItem.id}-active.png`;
+      // navItem.iconInactive = `/assets/icons/${navItem.id}-inactive.png`;
+      if (navItem.children !== undefined && navItem.children.length > 0) {
+        for (child of navItem.children) {
           const childkey = 'menu_items.' + child.translationKey;
           child.name = this.translateSvc.instant(childkey);
         }

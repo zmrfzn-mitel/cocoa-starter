@@ -42,11 +42,12 @@ export class CustomTranslateLoader implements TranslateLoader {
 
     let files = [
       import(`../assets/cl-console-components/i18n/${lang}.json`),
+      import(`../../../assets/i18n/${lang}.json`),
       import(`../assets/i18n/${lang}.json`)
     ];
 
     if (modulePath) {
-      files.push(import(`../${modulePath}/assets/i18n/${lang}.json`));
+      files.push(import(`../assets/i18n/${lang}.json`));
     }
 
     return from(Promise.all(files).then(values => {

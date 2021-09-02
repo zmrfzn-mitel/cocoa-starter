@@ -15,7 +15,7 @@ import { CustomTranslateLoader } from './services/translate-loader.service';
   imports: [
     CommonModule,
     ClConsoleComponentsModule,
-    TranslateModule.forRoot({
+    TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
         useClass: CustomTranslateLoader

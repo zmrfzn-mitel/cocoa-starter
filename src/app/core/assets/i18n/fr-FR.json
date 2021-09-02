@@ -1,9 +1,4 @@
 {
-    "menu_items": {
-        "Dashboard": "[FR]Dashboard",
-        "home": "[FR]Home",
-        "test": "[FR]Test"
-    },
     "nav_error": {
         "400": {
             "content": "The request is invalid.",

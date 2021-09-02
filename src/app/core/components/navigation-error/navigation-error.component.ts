@@ -1,5 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { langService } from '../../services/translate-loader.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -11,9 +13,12 @@ export class NavigationErrorComponent implements OnInit, OnDestroy {
   @Input() errorNum = '';
 
   subscriptions: Subscription[] = [];
+  subscription: Subscription;
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private customLang: langService,
+    private translateSvc: TranslateService
   ) { }
 
   ngOnInit(): void {
