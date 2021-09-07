@@ -9,14 +9,14 @@ export const navItems: any[] = [
         iconInactive: '/assets/icons/dashboard_inactive.svg'
     },
     {
-        name: 'Test',
-        id: 'test',
-        translationKey: 'test',
+        name: 'Sample Module',
+        id: 'sample',
+        translationKey: 'sample',
         minRole: 'USER',
-        navigation: '/test',
+        navigation: '/sample',
         iconActive: '/assets/icons/groups_active.svg',
         iconInactive: '/assets/icons/groups_inactive.svg'
-    }
+    },
 ];
 
 export const supportedLanguages: any = [{

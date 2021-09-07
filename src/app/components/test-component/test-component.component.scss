@@ -1,0 +1,25 @@
+  
+  @media only screen and (min-width: 769px) {
+    #content {
+      margin-left: 250px;
+      min-width: 950px;
+      width: calc(100% - 250px);
+    }
+  }
+  
+  @media only screen and (max-width: 769px) {
+    #content {
+      width: calc(100% - 250px);
+      min-width: 950px;
+      overflow-x: auto;
+    }
+  }
+
+  #content {
+    // padding: 33px;
+    margin-left: 250px;
+
+    transition: all 0.3s;
+    background-color: #F5F5F6;
+    height: auto;
+  }

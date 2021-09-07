@@ -1,4 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
-
+@import './app/core/assets/globalStyles.scss';
 @import "~bootstrap/dist/css/bootstrap.css";
 
+/**
+* PrimeNg styles
+*/
+@import "~primeicons/primeicons.css";
+@import "~primeng/resources/themes/nova/theme.css";
+@import "~primeng/resources/primeng.min.css";
+
+/**
+* FontAwesome styles
+*/
+@import "~font-awesome/css/font-awesome.css";
+
+body {
+    background-color: #f5f5f6 !important;
+    /* Standard Element Styles*/
+    h1 {
+      @include cux-header-font-style;
+    }
+  
+    h2 {
+      @include cux-main-header-font-style;
+    }
+  
+    h3 {
+      @include cux-section-header-font-style;
+    }
+}

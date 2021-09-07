@@ -9,8 +9,11 @@ import { Logger } from '@core/services/logger.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { navItems, supportedLanguages } from '@app/constants/appInfo';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
-import { langService } from './core/services/translate-loader.service';
-import { AppInfoService } from './services/app-info.service';
+import { langService } from '../core/services/translate-loader.service';
+import { AppInfoService } from '../services/app-info.service';
+import { CocoaCore } from '@mitel-internal/cocoa';
+
+import manifest from '../cocoa-manifest.json';
 
 const log = new Logger('AppComponent');
 
@@ -39,7 +42,11 @@ export class AppComponent implements OnInit {
     private translateSvc: TranslateService,
     private langSvc: langService,
     private appInfoService: AppInfoService,
-  ) { }
+    private cocoa: CocoaCore
+  ) {
+    // Register manifest to cocoa.
+    this.cocoa.register(manifest);
+  }
 
   ngOnInit(): void {
     ({ appName: this.appName, cloud: this.cloudEnv } = environment);
@@ -52,7 +59,10 @@ export class AppComponent implements OnInit {
         this.selectedLangCode = event.lang;
         this.setTranslatedMenuValues();
         this.setUserLanguage(event.lang);
-      })
+      }),
+      this.cocoa.messageBus.listen('appEvent1').subscribe(
+        message => alert(`message received in app. message:${message.data}`)
+      )
     );
   }
 
@@ -60,8 +70,10 @@ export class AppComponent implements OnInit {
   async handleUserClaims(claims: UserClaims): Promise<void> {
     if (claims) {
       try {
-
-        this.authSvc.refresh();
+        const session = sessionStorage.getItem('just-logged-in') || false;
+        if (!session) {
+          this.authSvc.refresh();
+        }
         const state = await this.authSvc.setClaims(claims);
         this.claims = state.claims;
 
@@ -178,8 +190,13 @@ export class AppComponent implements OnInit {
   }
 
   goHomePage(): void {
-    log.info('Navigating to home');
-    this.router.navigateByUrl('/');
+    const returnUrl = sessionStorage.getItem('current-url');
+    if (returnUrl) {
+      this.router.navigate([returnUrl]);
+    } else {
+      log.info('Navigating to home');
+      this.router.navigateByUrl('/');
+    }
   }
 
   onMenuItemClicked(url: string): void {

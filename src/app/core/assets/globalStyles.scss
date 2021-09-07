@@ -1,0 +1,116 @@
+$primary: #0073d0; //• Button• Links
+$primary-light: #f2f8ff;
+$mitel-light-blue: #00a1e0; //• Mitel Logo light color. Should not be used for links or buttons
+$mitel-dark-blue: #15325f; //• Mitel Logo dark color.
+$light-sky-blue: #00a1e030;
+$white: #ffffff; //Primary button text & Text for elements with a colored background
+$basically-white: #f8f9fb; //UI Backgrounds
+$super-light-gray: #eaeeef;// UI Backgrounds
+$transparent: #fff0;// UI Backgrounds
+$light-gray: #d1d6db; // Disabled text or elements
+$medium-gray: #acb3b9; //Standalone icons & Disabled text or elements
+$light-dark-gray: #a8a8a8;
+$very-light-gray: #007dbe;
+$dark-gray: #464b51; //All body and header text & Standalone icons
+$almost-black: #1f1f1f; //All body and header text & Standalone icons
+$black: #000000; //Should not be used unless necessary. "almost-black" is prefered for dark text and icons.
+$black-basic: #838b92;
+$success: #3fac49; //Success text or icons
+$success-border: #318732; //Success icons border
+$warning: #eb3530; //Warning text or icons & Destructive button	
+$dark-red: #CD2B26;
+$dark-brown: #7B1A17;
+$dark-gold: #B48002;
+$warning-border: #A4221E; //Warning icons border
+$caution: #fdb913; // Caution text or icons
+$caution-secondary: #FDC53A;
+$caution-secondary-border: #E1A002;
+$aqua: #6decce; // Avatar color
+$lime: #96e880; // Avatar color
+$peach: #f99191; // Avatar color
+$grape: #c2bbfe; // Avatar color
+$tangerine: #ff7900; // Avatar color
+$Cherokee: #fdce84; // Avatar color
+$super-light-blue: #e5f5fc;
+$black-success: #153918;
+$layer-dark-blue: #11284c;
+
+$font-family: 'Open Sans';
+$font-arial: Arial;
+$font-helvetica-neue: "Helvetica Neue";
+$font-helvetica: Helvetica;
+$font-sans-serif: sans-serif;
+
+$secondary-focus-gray: #f2f4f7;
+$secondary-label-dark: #333333;
+$input-label-color: #354052;
+$block-text-color: #bac1c7;
+$block-border-bottom-color: #e6e9eb;
+$gray-text-color: #7e8892;
+$delete-focus-red: #ff5a55;
+$default-border-color:#4898e0;
+$default: #0080e7;
+$aqua-light: #6dece0;
+$gray: #c2c3c3;
+$medium-gray-price: #7f8fa4;
+$white-shade: #dfe4e8;
+$grey: #383f57;
+$label-color: #323a45;
+$text-grey: #79797a;
+$alice-blue:#f1f4f8;
+$light-grey: #828796;
+$welcome-page-grey: #373a3c;
+$white-ice: #e4f4fb;
+$zambezi: #675959;
+$ghost-white: #F5F5F6;
+$minus-icon-gray: #b2a9bb;
+$minus-border-gray: #ccc9c9;
+$error-background: #FCDDDD;
+$btn-border-gray: #484a4c;
+
+$tiny-text:	10px; //	Use only in bold and CAPS.
+$caption-text: 12px;
+$body-text:	14px; //	Most text, including all components uses regular 14px sized text.
+$help-text: 13px;
+$H3: 16px;	
+$H2: 20px; 
+$H1: 26px;
+
+$font-semibold:600;
+$font-bold:700;
+$font-lightbold:500;
+@mixin cux-header-font-style {
+    font-size: $H1;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+
+@mixin cux-main-header-font-style {
+    font-size: $H2;
+    font-weight: 600;
+    line-height: 1.4;
+    font-family: $font-family;
+    color: $almost-black
+}
+
+@mixin cux-sub-header-font-style {
+    font-size: $caption-text;
+    font-weight: normal;
+    line-height: 16px;
+    font-family: $font-family;
+    color: $dark-gray;
+}
+
+
+@mixin cux-section-header-font-style {
+    font-size: $H3;
+    font-weight: 600;
+    line-height: 1.75;
+}
+
+@mixin cux-section-content-font-style {
+    font-size: $body-text;
+    font-weight: 600;
+    line-height: 1.75;
+}

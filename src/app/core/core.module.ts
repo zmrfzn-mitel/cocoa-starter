@@ -31,7 +31,8 @@ import { CustomTranslateLoader } from './services/translate-loader.service';
   exports: [
     ClHeaderComponent,
     ClSideNavComponent,
-    NavigationErrorComponent
+    NavigationErrorComponent,
+    TranslateModule
   ]
 })
 export class CoreModule { }

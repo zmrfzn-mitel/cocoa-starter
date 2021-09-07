@@ -2,7 +2,7 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 
 import { Observable, from, Subject } from 'rxjs';
 import { TranslateLoader, TranslateService } from '@ngx-translate/core';
-import { AppInfoService } from '../../services/app-info.service';
+import { AppInfoService } from '@app/services/app-info.service';
 import * as _ from 'lodash';
 
 export class CustomTranslateLoader implements TranslateLoader {
@@ -43,11 +43,12 @@ export class CustomTranslateLoader implements TranslateLoader {
     let files = [
       import(`../assets/cl-console-components/i18n/${lang}.json`),
       import(`../../../assets/i18n/${lang}.json`),
-      import(`../assets/i18n/${lang}.json`)
+      import(`../assets/i18n/${lang}.json`),
+      import(`../../modules/sample/assets/i18n/${lang}.json`)
     ];
 
     if (modulePath) {
-      files.push(import(`../assets/i18n/${lang}.json`));
+      // files.push(import(`../../modules/${modulePath}/assets/i18n/${lang}.json`));
     }
 
     return from(Promise.all(files).then(values => {
@@ -82,7 +83,7 @@ export class userLangPreference {
 
   }
   setUserLanguage(lang: string) {
-    let langWithModulePath = lang.split("/");
+    let langWithModulePath = lang.split('/');
     if (langWithModulePath[0]) {
       lang = langWithModulePath[0];
     }

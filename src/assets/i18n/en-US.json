@@ -8,6 +8,7 @@
     "menu_items": {
         "Dashboard": "Dashboard",
         "home": "Home",
-        "test": "Test"
+        "test": "Test",
+        "sample": "Sample Module"
     }
 }

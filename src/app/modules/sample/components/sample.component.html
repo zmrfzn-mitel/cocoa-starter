@@ -1,0 +1,15 @@
+<div class="wrapper">
+
+    <div id="content">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{'sample.title' | translate }}</h5>
+                <p class="card-text">Some quick example text to build on the panel title and make up the bulk of the panel's content.</p>
+                <a class="card-link" routerLink='/navigationError' [queryParams]="{'nav_error': '403'}">403 Error </a>
+                <a class="card-link" routerLink='/navigationError' [queryParams]="{'nav_error': '404'}">404 Error </a>
+                <a class="card-link" routerLink='/navigationError' [queryParams]="{'nav_error': '500'}">500 Error </a>                
+                <a class="card-link">Another link</a>
+            </div>
+        </div>
+    </div>
+</div>

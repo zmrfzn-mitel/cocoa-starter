@@ -11,7 +11,7 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2015",
-    "module": "esnext",
+    "module": "es2020",
     "types": ["node", "jasmine"],
     "typeRoots": [
       "node_modules/@types"
@@ -26,7 +26,9 @@
       "@env/*": ["src/environments/*"]
       // "@shared": ["src/app/@shared"],
       // "@shared/*": ["src/app/@shared/*"]
-    }
+    },
+    "allowSyntheticDefaultImports": true,    
+    "resolveJsonModule": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false
