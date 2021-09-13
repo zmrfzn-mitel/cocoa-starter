@@ -60,8 +60,8 @@ export class AppComponent implements OnInit {
         this.setTranslatedMenuValues();
         this.setUserLanguage(event.lang);
       }),
-      this.cocoa.messageBus.listen('appEvent1').subscribe(
-        message => alert(`message received in app. message:${message.data}`)
+      this.cocoa.messageBus.listen('sample-firstEvent').subscribe(
+        message => alert(`message received in app. message:${message.data.data}`)
       )
     );
   }

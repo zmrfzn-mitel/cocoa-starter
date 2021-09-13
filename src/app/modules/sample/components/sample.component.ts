@@ -31,4 +31,8 @@ export class SampleComponent implements OnInit {
     this.translationsComplete = true;
   }
 
+  onLinkClick(event) {
+    this.cocoa.messageBus.send('sample-firstEvent', { data: 'btnClickedFromSample' });
+  }
+
 }
