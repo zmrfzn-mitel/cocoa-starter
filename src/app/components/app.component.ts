@@ -35,6 +35,7 @@ export class AppComponent implements OnInit {
   languages: any[];
   subscriptions: Subscription[] = [];
   selectedLangCode: string;
+  defaultMenu: string = 'home';
   constructor(
     private authSvc: AuthService,
     private clHeader: ClHeaderComponent,
@@ -192,6 +193,7 @@ export class AppComponent implements OnInit {
   goHomePage(): void {
     const returnUrl = sessionStorage.getItem('current-url');
     if (returnUrl) {
+      this.defaultMenu = returnUrl;
       this.router.navigate([returnUrl]);
     } else {
       log.info('Navigating to home');
