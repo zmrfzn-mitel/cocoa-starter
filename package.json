@@ -23,7 +23,7 @@
     "@angular/platform-browser": "~11.2.14",
     "@angular/platform-browser-dynamic": "~11.2.14",
     "@angular/router": "~11.2.14",
-    "@mitel-internal/cocoa": "file:../COCOA/dist/cocoa/mitel-internal-cocoa-0.2.0.tgz",
+    "@mitel-internal/cocoa": "~0.2.12",
     "@mitel/cloudlink-console-components": "^0.2.7",
     "@mitel/cloudlink-sdk": "0.1.0-alpha.130",
     "@ng-bootstrap/ng-bootstrap": "^8.0.4",
