@@ -9,7 +9,7 @@ import { Logger } from '@core/services/logger.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { navItems, supportedLanguages } from '@app/constants/appInfo';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
-import { langService } from '../core/services/translate-loader.service';
+import { langService, userLangPreference } from '../core/services/translate-loader.service';
 import { AppInfoService } from '../services/app-info.service';
 import { CocoaCore } from '@mitel-internal/cocoa';
 
@@ -42,6 +42,7 @@ export class AppComponent implements OnInit {
     private translateSvc: TranslateService,
     private langSvc: langService,
     private appInfoService: AppInfoService,
+    private userLang: userLangPreference,
     private cocoa: CocoaCore
   ) {
     // Register manifest to cocoa.
@@ -53,12 +54,14 @@ export class AppComponent implements OnInit {
     this.clHeader.setClientId(environment.clientId);
     this.languages = supportedLanguages;
     this.navItems = navItems;
-    //this.setupTranslationService();
     this.subscriptions.push(
       this.translateSvc.onLangChange.subscribe((event: LangChangeEvent) => {
-        this.selectedLangCode = event.lang;
-        this.setTranslatedMenuValues();
-        this.setUserLanguage(event.lang);
+        if (event.lang && this.selectedLangCode !== event.lang) {
+          this.userLang.setUserLanguage(event.lang);
+          this.selectedLangCode = event.lang;
+          this.langSvc.changeLanguage(event.lang);
+          this.setTranslatedMenuLabels();
+        }
       }),
       this.cocoa.messageBus.listen('appEvent1').subscribe(
         message => alert(`message received in app. message:${message.data}`)
@@ -69,6 +72,7 @@ export class AppComponent implements OnInit {
 
   async handleUserClaims(claims: UserClaims): Promise<void> {
     if (claims) {
+      this.setupTranslationService();
       try {
         const session = sessionStorage.getItem('just-logged-in') || false;
         if (!session) {
@@ -146,40 +150,11 @@ export class AppComponent implements OnInit {
     return (this.appInfoService.getSupportedLanguages());
   }
 
-  setUserLanguage(lang: string) {
-    let langWithModulePath = lang.split("/");
-    if (langWithModulePath[0]) {
-      lang = langWithModulePath[0];
-    }
-    lang = this.formatLocale(lang);
-    localStorage.setItem('userLangPreference', lang);
-  }
-
-  formatLocale(lang: string) {
-    switch (lang) {
-      case 'en':
-      case 'en-US':
-        return lang = 'en-US';
-      case 'en-GB':
-        return lang = 'en-GB';
-      case 'de':
-      case 'de-DE':
-        return lang = 'de-DE';
-      case 'fr':
-      case 'fr-FR':
-        return lang = 'fr-FR';
-      default:
-        return lang = 'en-US';
-    }
-  }
-
-  setTranslatedMenuValues() {
+  setTranslatedMenuLabels() {
     let navItem, child;
     for (navItem of this.navItems) {
       const key = 'menu_items.' + navItem.translationKey;
       navItem.name = this.translateSvc.instant(key);
-      // navItem.iconActive = `/assets/icons/${navItem.id}-active.png`;
-      // navItem.iconInactive = `/assets/icons/${navItem.id}-inactive.png`;
       if (navItem.children !== undefined && navItem.children.length > 0) {
         for (child of navItem.children) {
           const childkey = 'menu_items.' + child.translationKey;
