@@ -5,6 +5,9 @@
         "browser_suggest": "Please use a supported browser such as Chrome, Edge, Firefox, or Safari.",
         "Finding_number_ranges": "Finding number ranges…"
     },
+    "test": {
+        "title": "Starter Template"
+      },
     "menu_items": {
         "Dashboard": "[GB] Dashboard",
         "home": "[GB] Home",

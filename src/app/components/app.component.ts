@@ -35,6 +35,7 @@ export class AppComponent implements OnInit {
   languages: any[];
   subscriptions: Subscription[] = [];
   selectedLangCode: string;
+  defaultMenu: string = 'home';
   constructor(
     private authSvc: AuthService,
     private clHeader: ClHeaderComponent,
@@ -63,8 +64,8 @@ export class AppComponent implements OnInit {
           this.setTranslatedMenuLabels();
         }
       }),
-      this.cocoa.messageBus.listen('appEvent1').subscribe(
-        message => alert(`message received in app. message:${message.data}`)
+      this.cocoa.messageBus.listen('sample-firstEvent').subscribe(
+        message => alert(`message received in app. message:${message.data.data}`)
       )
     );
   }
@@ -167,6 +168,7 @@ export class AppComponent implements OnInit {
   goHomePage(): void {
     const returnUrl = sessionStorage.getItem('current-url');
     if (returnUrl) {
+      this.defaultMenu = returnUrl;
       this.router.navigate([returnUrl]);
     } else {
       log.info('Navigating to home');

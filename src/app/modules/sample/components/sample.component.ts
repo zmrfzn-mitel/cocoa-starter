@@ -29,4 +29,8 @@ export class SampleComponent implements OnInit {
     }));
   }
 
+  onLinkClick(event) {
+    this.cocoa.messageBus.send('sample-firstEvent', { data: 'btnClickedFromSample' });
+  }
+
 }

@@ -8,7 +8,7 @@
                 <a class="card-link" routerLink='/navigationError' [queryParams]="{'nav_error': '403'}">403 Error </a>
                 <a class="card-link" routerLink='/navigationError' [queryParams]="{'nav_error': '404'}">404 Error </a>
                 <a class="card-link" routerLink='/navigationError' [queryParams]="{'nav_error': '500'}">500 Error </a>                
-                <a class="card-link">Another link</a>
+                <a class="card-link" routerLink="." (click)="onLinkClick($event)" >Message Bus</a>
             </div>
         </div>
     </div>

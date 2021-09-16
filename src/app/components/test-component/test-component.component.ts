@@ -20,7 +20,6 @@ export class TestComponentComponent implements OnInit {
   }
   onBtnClick(event: any): void {
     log.info('appEvent1 logged');
-    this.cocoa.messageBus.send('appEvent1', { data: 'btnClickedFromTest' });
   }
 
 }

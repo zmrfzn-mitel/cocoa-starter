@@ -5,6 +5,9 @@
     "browser_suggest": "Bitte verwenden Sie einen unterstützten Browser wie Chrome, Edge, Firefox oder Safari.",
     "Finding_number_ranges": "Nummernbereiche finden..."
   },
+  "test": {
+    "title": "Starter-Vorlage"
+  },
   "menu_items": {
     "Dashboard": "[DE] Dashboard",
     "home": "[DE] Home",
